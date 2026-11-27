@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const tasksRouter = require('./routes/tasks');
+const usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -13,8 +14,9 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'UP', timestamp: new Date().toISOString() });
 });
 
-// Rutas CRUD de tareas (definidas en routes/tasks.js)
+
 app.use('/tasks', tasksRouter);
+app.use('/users', usersRouter);
 
 // Manejador global de errores (evita respuestas HTML feas si falla el JSON)
 app.use((err, _req, res, _next) => {
